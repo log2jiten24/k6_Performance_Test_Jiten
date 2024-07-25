@@ -12,12 +12,12 @@ export const options = {
       maxDuration: '30s',
     },
      //execute the tests on the grafana cloud 
-     cloud: {
-        // Project: k6_Demo_Performance_Test
-        projectID: 3697242,
-        // Test runs with the same name groups test runs together.
-        name: 'Test_Run_Demo_Shared_Virtual_Users'
-      } 
+    //  cloud: {
+    //     // Project: k6_Demo_Performance_Test
+    //     projectID: 3697242,
+    //     // Test runs with the same name groups test runs together.
+    //     name: 'Test_Run_Demo_Shared_Virtual_Users'
+    //   } 
   },
 };
 

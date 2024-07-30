@@ -3,6 +3,9 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  schedule:
+    # * is a special character in YAML, so you have to quote this string
+    - cron: '*/15 * * * *'  
 
 jobs:
   protocol:
@@ -11,8 +14,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: grafana/setup-k6-action@v1
       - uses: grafana/run-k6-action@v1
+      env:
+          K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+          K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
         with:
           path: |
             ./specs_folder/k6_Cloud_Demo.js  
             ./specs_folder/Threshold_example_test.js 
-            ./specs_folder/k6_Browser_test.js
+          cloud-run-locally: false
+          cloud-comment-on-pr: true  

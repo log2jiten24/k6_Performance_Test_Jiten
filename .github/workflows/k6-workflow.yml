@@ -13,4 +13,4 @@ jobs:
       - uses: grafana/run-k6-action@v1
         with:
           path: |
-            ./specs_folder/k6_Cloud_Demo.js  ./specs_folder/k6*.js
+            ./specs_folder/k6_Cloud_Demo.js  ./specs_folder/Threshold_example_test.js ./specs_folder/k6_Browser_test.js

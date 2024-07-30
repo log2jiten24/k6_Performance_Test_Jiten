@@ -24,5 +24,7 @@ jobs:
           path: |
             ./specs_folder/k6_Cloud_Demo.js  
             ./specs_folder/Threshold_example_test.js 
-          
-          
+          parallel: true # optional: run tests in parallel (default: false)
+          fail-fast: false # optional: fail the step early if any test fails (default: true)
+          cloud-run-locally: false
+          cloud-comment-on-pr: true

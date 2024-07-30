@@ -12,7 +12,6 @@ jobs:
       - uses: grafana/setup-k6-action@v1
       - uses: grafana/run-k6-action@v1
         with:
-          path: |     
-          ./specs_folder/k6*.js     
+          path: |        
           ./specs_folder/k6_Browser_test.js   
           ./specs_folder/Threshold_example_test.js

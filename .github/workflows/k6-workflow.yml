@@ -1,0 +1,32 @@
+name: k6 Cloud Load Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+ 
+
+jobs:
+  run-cloud-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup K6
+        uses: grafana/setup-k6-action@v1
+        
+      - name: Run local k6 test
+       - uses: grafana/run-k6-action@v1
+  env:
+    K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+    K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
+  with:
+    path: |
+      ./specs_folder/test*.js
+    cloud-run-locally: false
+    cloud-comment-on-pr: true
+  flags: --vus 10 --duration 20s # optional: flags to pass to to each k6 test (default: none)
+  parallel: true # optional: run tests in parallel (default: false)
+  fail-fast: false # optional: fail the step early if any test fails (default: true)  

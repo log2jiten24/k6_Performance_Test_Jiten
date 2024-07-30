@@ -9,6 +9,9 @@ on:
 jobs:
   run-cloud-test:
     runs-on: ubuntu-latest
+    env:
+      K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
+      K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,14 +20,13 @@ jobs:
         uses: grafana/setup-k6-action@v1
       - name: Run local k6 test
         uses: grafana/run-k6-action@v1
-        env:
-          K6_CLOUD_TOKEN: ${{ secrets.K6_CLOUD_TOKEN }}
-          K6_CLOUD_PROJECT_ID: ${{ secrets.K6_CLOUD_PROJECT_ID }}
+        
         with:
           path: |
             ./specs_folder/k6_Cloud_Demo.js  
             ./specs_folder/Threshold_example_test.js 
+          flags: --vus 10 --duration 20s # optional: flags to pass to to each k6 test (default: none)  
           parallel: true # optional: run tests in parallel (default: false)
           fail-fast: false # optional: fail the step early if any test fails (default: true)
-          cloud-run-locally: true
+          cloud-run-locally: false
           cloud-comment-on-pr: true

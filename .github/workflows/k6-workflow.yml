@@ -25,4 +25,4 @@ jobs:
             ./specs_folder/k6_Cloud_Demo.js  
             ./specs_folder/Threshold_example_test.js 
           cloud-run-locally: false
-          cloud-comment-on-pr: true
+          
